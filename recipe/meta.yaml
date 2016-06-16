@@ -11,7 +11,7 @@ source:
 
 build:
     number: 0
-    skip: True  # [win or osx]
+    skip: True  # [win]
     detect_binary_files_with_prefix: true
 
 requirements:
@@ -19,7 +19,7 @@ requirements:
         - pkg-config
         - cairo
         - gmp
-        - icu
+        - icu 56.*
         - mpfr
         - pixman
         - freetype 2.6.*
@@ -29,7 +29,7 @@ requirements:
     run:
         - cairo
         - gmp
-        - icu
+        - icu 56.*
         - mpfr
         - pixman
         - freetype 2.6.*
