@@ -50,6 +50,7 @@ mkdir -p tmp_build && pushd tmp_build
                --with-system-gmp \
                --with-gmp-includes=$PREFIX/include \
                --with-gmp-libdir=$PREFIX/lib \
+               --with-system-cairo \
                --with-system-pixman \
                --with-system-freetype2 \
                --with-system-libpng \
@@ -61,8 +62,7 @@ mkdir -p tmp_build && pushd tmp_build
                --with-mprf-libdir=$PREFIX/lib \
                --without-system-harfbuzz \
                --without-system-graphite2 \
-               --without-system-poppler \
-               --without-system-cairo
+               --without-system-poppler
   make
   LC_ALL=C make check
   make install
