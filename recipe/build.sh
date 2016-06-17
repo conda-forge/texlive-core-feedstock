@@ -1,5 +1,15 @@
 #! /bin/bash
 
+
+# Need the fallback path for testing in some cases.
+if [ "$(uname)" == "Darwin" ]
+then
+    export LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
+else
+    export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
+fi
+
+
 # kpathsea scans the texmf.cnf file to set up its hardcoded paths, so set them
 # up before building. It doesn't seem to handle multivalued TEXMFCNF entries,
 # so we patch that up after install.
@@ -50,6 +60,7 @@ mkdir -p tmp_build && pushd tmp_build
                --with-system-gmp \
                --with-gmp-includes=$PREFIX/include \
                --with-gmp-libdir=$PREFIX/lib \
+               --with-system-cairo \
                --with-system-pixman \
                --with-system-freetype2 \
                --with-system-libpng \
@@ -61,10 +72,9 @@ mkdir -p tmp_build && pushd tmp_build
                --with-mprf-libdir=$PREFIX/lib \
                --without-system-harfbuzz \
                --without-system-graphite2 \
-               --without-system-poppler \
-               --without-system-cairo
+               --without-system-poppler
   make
-  LC_ALL=C make check
+  eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" LC_ALL=C make check
   make install
 popd
 
