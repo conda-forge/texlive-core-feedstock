@@ -41,6 +41,7 @@ test:
     commands:
         - pdftex --version
         - bibtex --version
+        - tlmgr --version
 
 about:
     home: https://www.tug.org/texlive/
