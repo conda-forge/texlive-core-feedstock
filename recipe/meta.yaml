@@ -1,53 +1,53 @@
 {% set version = "20160523b" %}
 
 package:
-    name: texlive-core
-    version: {{ version }}
+  name: texlive-core
+  version: {{ version }}
 
 source:
-    fn: texlive-{{ version }}-source.tar.xz
-    url: http://mirrors.ctan.org/systems/texlive/Source/texlive-{{ version }}-source.tar.xz
-    sha256: a8b32ca47f0a403661a09e202f4567a995beb718c18d8f81ca6d76daa1da21ed
+  fn: texlive-{{ version }}-source.tar.xz
+  url: http://mirrors.ctan.org/systems/texlive/Source/texlive-{{ version }}-source.tar.xz
+  sha256: a8b32ca47f0a403661a09e202f4567a995beb718c18d8f81ca6d76daa1da21ed
 
 build:
-    number: 1
-    skip: True  # [win]
-    detect_binary_files_with_prefix: true
+  number: 2
+  skip: True  # [win]
+  detect_binary_files_with_prefix: true
 
 requirements:
-    build:
-        - pkg-config
-        - cairo 1.14.*
-        - gmp
-        - icu 56.*
-        - mpfr
-        - pixman 0.34.*
-        - freetype 2.6.*
-        - libpng >=1.6.23,<1.7
-        - zlib 1.2.*
-        - perl
-    run:
-        - cairo 1.14.*
-        - gmp
-        - icu 56.*
-        - mpfr
-        - pixman 0.34.*
-        - freetype 2.6.*
-        - libpng >=1.6.23,<1.7
-        - zlib 1.2.*
-        - perl
+  build:
+    - pkg-config
+    - cairo 1.14.*
+    - gmp
+    - icu 58.*
+    - mpfr
+    - pixman 0.34.*
+    - freetype 2.7|2.7.*
+    - libpng >=1.6.28,<1.7
+    - zlib 1.2.*
+    - perl
+  run:
+    - cairo 1.14.*
+    - gmp
+    - icu 58.*
+    - mpfr
+    - pixman 0.34.*
+    - freetype 2.7|2.7.*
+    - libpng >=1.6.28,<1.7
+    - zlib 1.2.*
+    - perl
 
 test:
-    commands:
-        - pdftex --version
-        - bibtex --version
+  commands:
+    - pdftex --version
+    - bibtex --version
 
 about:
-    home: https://www.tug.org/texlive/
-    license: GPL-2.0+ and GPL-2.0 and GPL-3.0 and LPPL-1.3c and LPPL-1.0 and Artistic-1.0 and Apache-2.0 and MIT and BSD-3-Clause
-    summary: An easy way to get up and running with the TeX document production system
+  home: https://www.tug.org/texlive/
+  license: GPL-2.0+ and GPL-2.0 and GPL-3.0 and LPPL-1.3c and LPPL-1.0 and Artistic-1.0 and Apache-2.0 and MIT and BSD-3-Clause
+  summary: 'An easy way to get up and running with the TeX document production system.'
 
 extra:
-    recipe-maintainers:
-        - jakirkham
-        - ocefpaf
+  recipe-maintainers:
+    - jakirkham
+    - ocefpaf
