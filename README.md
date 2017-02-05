@@ -7,7 +7,7 @@ Package license: GPL-2.0+ and GPL-2.0 and GPL-3.0 and LPPL-1.3c and LPPL-1.0 and
 
 Feedstock license: BSD 3-Clause
 
-Summary: An easy way to get up and running with the TeX document production system
+Summary: An easy way to get up and running with the TeX document production system.
 
 
 
