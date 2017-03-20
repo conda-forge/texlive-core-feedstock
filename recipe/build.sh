@@ -72,7 +72,8 @@ mkdir -p tmp_build && pushd tmp_build
                --with-mprf-libdir=$PREFIX/lib \
                --without-system-harfbuzz \
                --without-system-graphite2 \
-               --without-system-poppler
+               --without-system-poppler \
+               --without-x
   make
   eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" LC_ALL=C make check
   make install
