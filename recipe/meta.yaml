@@ -10,7 +10,7 @@ source:
   sha256: a8b32ca47f0a403661a09e202f4567a995beb718c18d8f81ca6d76daa1da21ed
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
   detect_binary_files_with_prefix: true
 
@@ -18,9 +18,9 @@ requirements:
   build:
     - pkg-config
     - cairo 1.14.*
-    - gmp
+    - gmp >=5.0.1,<7
     - icu 58.*
-    - mpfr
+    - mpfr 3.*
     - pixman 0.34.*
     - freetype 2.7|2.7.*
     - libpng >=1.6.28,<1.7
@@ -28,9 +28,9 @@ requirements:
     - perl
   run:
     - cairo 1.14.*
-    - gmp
+    - gmp >=5.0.1,<7
     - icu 58.*
-    - mpfr
+    - mpfr 3.*
     - pixman 0.34.*
     - freetype 2.7|2.7.*
     - libpng >=1.6.28,<1.7
