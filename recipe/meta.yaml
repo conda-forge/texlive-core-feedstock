@@ -1,4 +1,4 @@
-{% set version = "20160523b" %}
+{% set version = "20170520" %}
 
 package:
   name: texlive-core
@@ -6,11 +6,11 @@ package:
 
 source:
   fn: texlive-{{ version }}-source.tar.xz
-  url: http://mirrors.ctan.org/systems/texlive/Source/texlive-{{ version }}-source.tar.xz
-  sha256: a8b32ca47f0a403661a09e202f4567a995beb718c18d8f81ca6d76daa1da21ed
+  url: https://www.ctan.org/tex-archive/systems/texlive/Source/texlive-{{ version }}-source.tar.xz
+  sha256: c0a032aa9fa29e7cb521659779d6415f3b4b062a6a44193fb4e79cfefe7b8954
 
 build:
-  number: 3
+  number: 0
   skip: True  # [win]
   detect_binary_files_with_prefix: true
 
@@ -18,29 +18,32 @@ requirements:
   build:
     - pkg-config
     - cairo 1.14.*
-    - gmp
+    - gmp 6.1.*
     - icu 58.*
-    - mpfr
+    - mpfr 3.1.*
     - pixman 0.34.*
-    - freetype 2.7|2.7.*
+    - freetype 2.7
     - libpng >=1.6.28,<1.7
-    - zlib 1.2.*
-    - perl
+    - zlib 1.2.8
+    - perl 5.22.2.1
   run:
     - cairo 1.14.*
-    - gmp
+    - gmp 6.1.*
     - icu 58.*
-    - mpfr
+    - mpfr 3.1.*
     - pixman 0.34.*
-    - freetype 2.7|2.7.*
+    - freetype 2.7
     - libpng >=1.6.28,<1.7
-    - zlib 1.2.*
-    - perl
+    - zlib 1.2.8
+    - perl 5.22.2.1
 
 test:
   commands:
     - pdftex --version
     - bibtex --version
+    # Test the symlinks.
+    - pdflatex --version
+    - latex --version
 
 about:
   home: https://www.tug.org/texlive/

@@ -74,9 +74,9 @@ mkdir -p tmp_build && pushd tmp_build
                --without-system-graphite2 \
                --without-system-poppler \
                --without-x
-  make
+  make -j$CPU_COUNT
   eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" LC_ALL=C make check
-  make install
+  make install -j$CPU_COUNT
 popd
 
 # Remove info and man pages.
@@ -88,3 +88,7 @@ sed \
     -e "s|TEXMFCNF =.*|TEXMFCNF = {$PREFIX/share/texlive/texmf-local/web2c, $PREFIX/share/texlive/texmf-dist/web2c}|" \
     <tmp.cnf >$PREFIX/share/texlive/texmf-dist/web2c/texmf.cnf
 rm -f tmp.cnf
+
+# Create symlinks for pdflatex and latex
+ln -s $PREFIX/bin/pdftex $PREFIX/bin/pdflatex
+ln -s $PREFIX/bin/pdftex $PREFIX/bin/latex
