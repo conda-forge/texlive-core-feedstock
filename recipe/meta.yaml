@@ -18,23 +18,23 @@ requirements:
   build:
     - pkg-config
     - cairo 1.14.*
-    - gmp >=5.0.1,<7
+    - gmp 6.1.*
     - icu 58.*
-    - mpfr 3.*
+    - mpfr 3.1.*
     - pixman 0.34.*
-    - freetype 2.7|2.7.*
+    - freetype 2.7
     - libpng >=1.6.28,<1.7
-    - zlib 1.2.*
+    - zlib 1.2.8
     - perl 5.22.2.1
   run:
     - cairo 1.14.*
-    - gmp >=5.0.1,<7
+    - gmp 6.1.*
     - icu 58.*
-    - mpfr 3.*
+    - mpfr 3.1.*
     - pixman 0.34.*
-    - freetype 2.7|2.7.*
+    - freetype 2.7
     - libpng >=1.6.28,<1.7
-    - zlib 1.2.*
+    - zlib 1.2.8
     - perl 5.22.2.1
 
 test:
