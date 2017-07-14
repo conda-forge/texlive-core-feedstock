@@ -42,8 +42,8 @@ test:
     - pdftex --version
     - bibtex --version
     # Test the symlinks.
-    - pdflatex --version
-    - latex --version
+    - printf '\\documentclass{article}\n\\begin{document}\n\\end{document}\n' | pdflatex
+    - printf '\\documentclass{article}\n\\begin{document}\n\\end{document}\n' | latex
 
 about:
   home: https://www.tug.org/texlive/
