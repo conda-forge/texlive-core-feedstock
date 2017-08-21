@@ -41,9 +41,11 @@ test:
   commands:
     - pdftex --version
     - bibtex --version
-    # Test the symlinks.
-    - printf '\\documentclass{article}\n\\begin{document}\n\\end{document}\n' | pdflatex
+    # Test symlinks to (pdf)latex and try compiling minimal examples.
+    - latex --version
+    - pdflatex --version 
     - printf '\\documentclass{article}\n\\begin{document}\n\\end{document}\n' | latex
+    - printf '\\documentclass{article}\n\\begin{document}\n\\end{document}\n' | pdflatex
 
 about:
   home: https://www.tug.org/texlive/
