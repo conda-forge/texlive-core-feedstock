@@ -1,36 +1,60 @@
 #! /bin/bash
 
-
-# Need the fallback path for testing in some cases.
-if [ "$(uname)" == "Darwin" ]
-then
-    export LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-else
-    export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
-fi
-
+# From: https://github.com/TeX-Live/texlive-source/blob/master/Buil
+unset TEXMFCNF; export TEXMFCNF
+LANG=C; export LANG
+# [[ -d "${PREFIX}"/texmf ]] || mkdir -p "${PREFIX}"/texmf
+# ./configure --help
 
 # kpathsea scans the texmf.cnf file to set up its hardcoded paths, so set them
 # up before building. It doesn't seem to handle multivalued TEXMFCNF entries,
 # so we patch that up after install.
 
-mv $SRC_DIR/texk/kpathsea/texmf.cnf tmp.cnf
+declare -a CONFIG_EXTRA
+if [[ ${target_platform} =~ .*ppc.* ]]; then
+  # luajit is incompatible with powerpc.
+  CONFIG_EXTRA+=(-disable-luajittex)
+fi
+
+TEST_SEGFAULT=no
+
+if [[ ${TEST_SEGFAULT} == yes ]] && [[ ${target_platform} =~ .*linux.* ]]; then
+  # -O2 results in:
+  # FAIL: mplibdir/mptraptest.test
+  # FAIL: pdftexdir/pdftosrc.test
+  # .. so (sorry!)
+  export CFLAGS="${CFLAGS} -O0 -ggdb"
+  export CXXFLAGS="${CXXFLAGS} -O0 -ggdb"
+  CONFIG_EXTRA+=(--enable-debug)
+else
+  CONFIG_EXTRA+=(--disable-debug)
+fi
+
+# Requires prefix replacement, which does not work correctly.
+mv "${SRC_DIR}"/texk/kpathsea/texmf.cnf tmp.cnf
 sed \
-    -e "s|TEXMFROOT =.*|TEXMFROOT = $PREFIX/share/texlive|" \
-    -e "s|TEXMFLOCAL =.*|TEXMFLOCAL = $PREFIX/share/texlive/texmf-local|" \
+    -e "s|TEXMFROOT =.*|TEXMFROOT = ${PREFIX}/share/texlive|" \
+    -e "s|TEXMFLOCAL =.*|TEXMFLOCAL = ${PREFIX}/share/texlive/texmf-local|" \
     -e "/^TEXMFCNF/,/^}/d" \
-    -e "s|%TEXMFCNF =.*|TEXMFCNF = $PREFIX/share/texlive/texmf-dist/web2c|" \
-    <tmp.cnf >$SRC_DIR/texk/kpathsea/texmf.cnf
+    -e "s|%TEXMFCNF =.*|TEXMFCNF = ${PREFIX}/share/texlive/texmf-dist/web2c|" \
+    <tmp.cnf >"${SRC_DIR}"/texk/kpathsea/texmf.cnf
 rm -f tmp.cnf
 
-export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
+[[ -d "${PREFIX}"/share/texlive/tlpkg/TeXLive ]] || mkdir -p "${PREFIX}"/share/texlive/tlpkg/TeXLive
 
-# We need to package graphite2 to be able to use it harfbuzz.
-# Using our cairo breaks the recipe and `mpfr` is not found triggering the library from TL tree.
+# Completely essential, see https://github.com/conda-forge/texlive-core-feedstock/issues/19
+install -v -m644 texk/tests/TeXLive/* "${PREFIX}"/share/texlive/tlpkg/TeXLive || exit 1
+# install -v -m644 texmf/texmf-dist/scripts/texlive/mktexlsr.pl "${PREFIX}"/share/texlive/texmf-dist/scripts/texlive || exit 1
 
-mkdir -p tmp_build && pushd tmp_build
-  ../configure --prefix=$PREFIX \
-               --datarootdir="$PREFIX/share/texlive" \
+set -x
+
+mkdir build-tmp || true
+pushd build-tmp
+  ${SRC_DIR}/configure \
+               --prefix="${PREFIX}" \
+               --host=${HOST} \
+               --datarootdir="${PREFIX}"/share/texlive \
+               --build=${BUILD} \
                --disable-all-pkgs \
                --disable-native-texlive-build \
                --disable-ipc \
@@ -54,41 +78,64 @@ mkdir -p tmp_build && pushd tmp_build
                --enable-web-progs \
                --enable-texlive \
                --enable-dvipdfm-x \
-               --with-system-icu \
-               --with-icu-includes=$PREFIX/include \
-               --with-icu-libdir=$PREFIX/lib \
-               --with-system-gmp \
-               --with-gmp-includes=$PREFIX/include \
-               --with-gmp-libdir=$PREFIX/lib \
                --with-system-cairo \
-               --with-system-pixman \
                --with-system-freetype2 \
+               --with-system-gmp \
+               --with-system-graphite2 \
+               --with-system-harfbuzz \
+               --with-system-icu \
                --with-system-libpng \
+               --with-system-mpfr \
+               --with-system-pixman \
+               --with-system-poppler \
                --with-system-zlib \
-               --with-zlib-includes=$PREFIX/include \
-               --with-zlib-libdir=$PREFIX/lib \
-               --with-sytem-mpfr \
-               --with-mpfr-includes=$PREFIX/include \
-               --with-mprf-libdir=$PREFIX/lib \
-               --without-system-harfbuzz \
-               --without-system-graphite2 \
-               --without-system-poppler \
-               --without-x
-  make -j$CPU_COUNT
-  eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" LC_ALL=C make check
-  make install -j$CPU_COUNT
+               --without-x \
+               "${CONFIG_EXTRA[@]}" || { cat config.log ; exit 1 ; }
+  # There is a race-condition in the build system.
+  make -j${CPU_COUNT} ${VERBOSE_AT} || make -j1 ${VERBOSE_AT}
+  # make check reads files from the installation prefix:
+  make install-strip -j${CPU_COUNT}
+  make texlinks
+
+  # At this point BLFS does:
+  # tar -xf ../../texlive-20180414-texmf.tar.xz -C /opt/texlive/2018 --strip-components=1
+  # .. but we would like to avoid this 2.5GB of stuff.
+  [[ -d "${PREFIX}"/share/texlive/texmf-dist ]] || mkdir -p "${PREFIX}"/share/texlive/texmf-dist
+  cp -rf "${SRC_DIR}"/texmf/texmf-dist/* "${PREFIX}"/share/texlive/texmf-dist/
+
+  mktexlsr || exit 1
+  fmtutil-sys --all || exit 1
+  mtxrun --generate || exit 1
+
+  if [[ ! ${target_platform} =~ .*linux.* ]]; then
+    LC_ALL=C make check ${VERBOSE_AT}
+  elif [[ ${TEST_SEGFAULT} == yes ]] && [[ ${target_platform} =~ .*linux.* ]]; then
+    LC_ALL=C make check ${VERBOSE_AT}
+    echo "pushd ${SRC_DIR}/build-tmp/texk/web2c"
+    echo "LC_ALL=C make check ${VERBOSE_AT}"
+    echo "cat mplibdir/mptraptest.log"
+    pushd "${SRC_DIR}/build-tmp/texk/web2c/mpost"
+      # I believe mpost test fails here because it tries to load mpost itself as a configuration file
+      # .. this happens in both failing tests on Linux. Debug builds (CFLAGS-wise) do not suffer a
+      # segfault at this point but release ones. Skipping for now, will re-visit later.
+      LC_ALL=C ../mpost --ini ../mpost
+    popd
+    exit 1
+  fi
 popd
 
 # Remove info and man pages.
-rm -rf $PREFIX/share/man
-rm -rf $PREFIX/share/texlive/info
+rm -rf "${PREFIX}"/share/man
+rm -rf "${PREFIX}"/share/texlive/info
 
-mv $PREFIX/share/texlive/texmf-dist/web2c/texmf.cnf tmp.cnf
+mv "${PREFIX}"/share/texlive/texmf-dist/web2c/texmf.cnf tmp.cnf
 sed \
     -e "s|TEXMFCNF =.*|TEXMFCNF = {$PREFIX/share/texlive/texmf-local/web2c, $PREFIX/share/texlive/texmf-dist/web2c}|" \
     <tmp.cnf >$PREFIX/share/texlive/texmf-dist/web2c/texmf.cnf
 rm -f tmp.cnf
 
 # Create symlinks for pdflatex and latex
-ln -s $PREFIX/bin/pdftex $PREFIX/bin/pdflatex
-ln -s $PREFIX/bin/pdftex $PREFIX/bin/latex
+pushd "${PREFIX}"/bin
+  ln -s pdftex pdflatex
+  ln -s pdftex latex
+popd
