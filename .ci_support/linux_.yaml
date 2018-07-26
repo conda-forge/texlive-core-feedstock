@@ -1,0 +1,53 @@
+c_compiler:
+- toolchain_c
+cairo:
+- '1.14'
+cxx_compiler:
+- toolchain_cxx
+fontconfig:
+- '2.13'
+freetype:
+- 2.8.1
+gmp:
+- '6'
+harfbuzz:
+- '1'
+icu:
+- '58'
+libpng:
+- 1.6.34
+mpfr:
+- '4'
+perl:
+- '5.26'
+pin_run_as_build:
+  cairo:
+    max_pin: x.x
+  fontconfig:
+    max_pin: x
+  freetype:
+    max_pin: x.x
+  gmp:
+    max_pin: x
+  harfbuzz:
+    max_pin: x
+  icu:
+    max_pin: x
+  libpng:
+    max_pin: x.x
+  mpfr:
+    max_pin: x
+  perl:
+    max_pin: x.x.x
+  pixman:
+    max_pin: x.x
+  poppler:
+    max_pin: x.x
+  zlib:
+    max_pin: x.x
+pixman:
+- '0.34'
+poppler:
+- '0.61'
+zlib:
+- '1.2'
