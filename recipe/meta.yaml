@@ -1,50 +1,76 @@
-{% set version = "20170520" %}
+{% set version = "20180414" %}
 
 package:
   name: texlive-core
   version: {{ version }}
 
 source:
-  url: https://www.ctan.org/tex-archive/systems/texlive/Source/texlive-{{ version }}-source.tar.xz
-  sha256: c0a032aa9fa29e7cb521659779d6415f3b4b062a6a44193fb4e79cfefe7b8954
+  - url: https://www.ctan.org/tex-archive/systems/texlive/Source/texlive-{{ version }}-source.tar.xz
+    sha256: fe0036d5f66708ad973cdc4e413c0bb9ee2385224481f7b0fb229700a0891e4e
+    patches:
+      - texlive-20180414-source-upstream_fixes-1.patch
+  # 2.5GB download ..
+  - url: ftp://tug.org/texlive/historic/2018/texlive-20180414-texmf.tar.xz
+    md5: 05330b3b5445ef60b08a0ed660c55c92
+    folder: texmf
+  # .. of which we need one file. I checked the sha256 against the one in
+  # texlive-20180414-texmf.tar.xz and they matched. File also included as
+  # part of the recipe, just in-case. In future will need updating.
+  # - url: https://www.tug.org/texlive/devsrc/Master/texmf-dist/scripts/texlive/mktexlsr.pl
+  #   sha256: a1164518f96e76ed37766326da154a2656ab7bda94333049408dbe391bdae16c
+  #   folder: texmf/texmf-dist/scripts/texlive
 
 build:
-  number: 2
+  number: 0
   skip: True  # [win]
   detect_binary_files_with_prefix: true
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - pkg-config
-    - cairo 1.14.*
-    - gmp 6.1.*
-    - icu 58.*
-    - mpfr 3.1.*
-    - pixman 0.34.*
-    - freetype 2.8.*
-    - libpng >=1.6.32,<1.6.35
-    - zlib 1.2.11
-    - perl 5.22.2.1
+    - texinfo
+    - make
+  host:
+    - cairo
+    - freetype
+    - fontconfig
+    - gmp
+    - graphite2
+    - harfbuzz
+    - icu
+    - libpng
+    - mpfr
+    - pixman
+    - perl
+    - poppler
+    - zlib
   run:
-    - cairo 1.14.*
-    - gmp 6.1.*
-    - icu 58.*
-    - mpfr 3.1.*
-    - pixman 0.34.*
-    - freetype 2.8.*
-    - libpng >=1.6.32,<1.6.35
-    - zlib 1.2.11
-    - perl 5.22.2.1
+    - cairo
+    - freetype
+    - fontconfig
+    - gmp
+    - graphite2
+    - harfbuzz
+    - icu
+    - libpng
+    - mpfr
+    - pixman
+    - perl
+    - poppler
+    - zlib
 
 test:
+  files:
+    - samplefile.tex
   commands:
     - pdftex --version
     - bibtex --version
     # Test the symlinks.
     - pdflatex --version
     - latex --version
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - pdflatex samplefile.tex
 
 about:
   home: https://www.tug.org/texlive/
@@ -53,5 +79,6 @@ about:
 
 extra:
   recipe-maintainers:
+    - mingwandroid
     - jakirkham
     - ocefpaf
