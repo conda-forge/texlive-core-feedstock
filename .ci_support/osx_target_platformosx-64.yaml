@@ -6,6 +6,10 @@ c_compiler:
 - toolchain_c
 cairo:
 - '1.14'
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
 cxx_compiler:
 - toolchain_cxx
 fontconfig:
@@ -56,7 +60,7 @@ pin_run_as_build:
 pixman:
 - '0.34'
 poppler:
-- '0.61'
+- '0.67'
 target_platform:
 - osx-64
 zlib:
