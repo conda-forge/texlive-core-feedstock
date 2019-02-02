@@ -1,17 +1,17 @@
 VERBOSE_AT:
 - V=1
 c_compiler:
-- toolchain_c
+- gcc
 cairo:
-- '1.14'
+- '1.16'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- toolchain_cxx
+- gxx
 docker_image:
-- condaforge/linux-anvil
+- condaforge/linux-anvil-comp7
 fontconfig:
 - '2.13'
 freetype:
@@ -19,11 +19,11 @@ freetype:
 gmp:
 - '6'
 harfbuzz:
-- '1'
+- '2'
 icu:
 - '58'
 libpng:
-- 1.6.34
+- 1.6.35
 mpfr:
 - '4'
 perl:
@@ -56,7 +56,7 @@ pin_run_as_build:
 pixman:
 - '0.34'
 poppler:
-- '0.67'
+- 0.67.0
 target_platform:
 - linux-64
 zlib:
