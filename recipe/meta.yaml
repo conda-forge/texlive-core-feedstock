@@ -7,6 +7,8 @@ package:
 source:
   url: ftp://tug.org/texlive/historic/2018/texlive-{{ version }}-source.tar.xz
   sha256: fe0036d5f66708ad973cdc4e413c0bb9ee2385224481f7b0fb229700a0891e4e
+  patches:
+    - 0001-support-poppler-0.64.0.patch
 
 build:
   number: 0
