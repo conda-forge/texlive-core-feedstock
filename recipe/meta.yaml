@@ -28,7 +28,7 @@ requirements:
     - patch
   host:
     - cairo 1.14.*
-    - freetype >=2.10.*
+    - freetype >=2.*
     - fontconfig >=2.13.*
     - gmp 6.1.*
     - harfbuzz >=1.8.*
@@ -36,13 +36,13 @@ requirements:
     - icu 58.*
     - libpng >=1.6.32,<1.6.37
     - mpfr >=4.0.*
-    - pixman >=0.38.*
+    - pixman >=0.34.*
     - perl
-    - poppler >=0.65.0
+    - poppler >=0.64.0,<0.70.0
     - zlib 1.2.11
   run:
     - cairo 1.14.*
-    - freetype >=2.10.*
+    - freetype >=2.*
     - fontconfig >=2.13.*
     - gmp 6.1.*
     - harfbuzz >=1.8.*
@@ -50,9 +50,9 @@ requirements:
     - icu 58.*
     - libpng >=1.6.32,<1.6.37
     - mpfr >=4.0.*
-    - pixman >=0.38.*
+    - pixman >=0.34.*
     - perl 
-    - poppler >=0.65.0
+    - poppler >=0.64.0,<0.70.0
     - zlib 1.2.11
 
 test:
