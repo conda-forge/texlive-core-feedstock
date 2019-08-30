@@ -27,33 +27,33 @@ requirements:
     - make
     - patch
   host:
-    - cairo
-    - freetype
-    - fontconfig
-    - gmp
-    - harfbuzz
+    - cairo 1.14.*
+    - freetype >=2.10.*
+    - fontconfig >=2.13.*
+    - gmp 6.1.*
+    - harfbuzz >=1.8.*
     - graphite2
-    - icu
-    - libpng
-    - mpfr
-    - pixman
+    - icu 58.*
+    - libpng >=1.6.32,<1.6.37
+    - mpfr >=4.0.*
+    - pixman >=0.38.*
     - perl
     - poppler >=0.65.0
-    - zlib
+    - zlib 1.2.11
   run:
-    - cairo
-    - freetype
-    - fontconfig
-    - gmp
+    - cairo 1.14.*
+    - freetype >=2.10.*
+    - fontconfig >=2.13.*
+    - gmp 6.1.*
+    - harfbuzz >=1.8.*
     - graphite2
-    - harfbuzz
-    - icu
-    - libpng
-    - mpfr
-    - pixman
-    - perl
+    - icu 58.*
+    - libpng >=1.6.32,<1.6.37
+    - mpfr >=4.0.*
+    - pixman >=0.38.*
+    - perl 
     - poppler >=0.65.0
-    - zlib
+    - zlib 1.2.11
 
 test:
   commands:
