@@ -1,0 +1,67 @@
+VERBOSE_AT:
+- V=1
+c_compiler:
+- gcc
+c_compiler_version:
+- '8'
+cairo:
+- '1.16'
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- gxx
+cxx_compiler_version:
+- '8'
+docker_image:
+- condaforge/linux-anvil-ppc64le
+fontconfig:
+- '2.13'
+freetype:
+- 2.9.1
+gmp:
+- '6'
+harfbuzz:
+- '2'
+icu:
+- '64.2'
+libpng:
+- '1.6'
+mpfr:
+- '4'
+perl:
+- 5.26.2
+pin_run_as_build:
+  cairo:
+    max_pin: x.x
+  fontconfig:
+    max_pin: x
+  freetype:
+    max_pin: x
+  gmp:
+    max_pin: x
+  harfbuzz:
+    max_pin: x
+  icu:
+    max_pin: x
+  libpng:
+    max_pin: x.x
+  mpfr:
+    max_pin: x
+  perl:
+    max_pin: x.x.x
+  pixman:
+    max_pin: x.x
+  poppler:
+    max_pin: x.x
+  zlib:
+    max_pin: x.x
+pixman:
+- '0.38'
+poppler:
+- 0.67.0
+target_platform:
+- linux-ppc64le
+zlib:
+- '1.2'
