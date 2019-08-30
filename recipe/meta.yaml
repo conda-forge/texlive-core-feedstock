@@ -1,40 +1,59 @@
-{% set version = "20170520" %}
+{% set version = "20180414" %}
 
 package:
   name: texlive-core
   version: {{ version }}
 
 source:
-  url: https://www.ctan.org/tex-archive/systems/texlive/Source/texlive-{{ version }}-source.tar.xz
-  sha256: c0a032aa9fa29e7cb521659779d6415f3b4b062a6a44193fb4e79cfefe7b8954
+  url: ftp://tug.org/texlive/historic/2018/texlive-{{ version }}-source.tar.xz
+  sha256: fe0036d5f66708ad973cdc4e413c0bb9ee2385224481f7b0fb229700a0891e4e
+  patches:
+      - texlive-20180414-source-upstream_fixes-3.patch
 
 build:
-  number: 2
+  number: 0
   skip: True  # [win]
   detect_binary_files_with_prefix: true
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('libxrender-devel') }}  # [linux]
+    - {{ cdt('libxext-devel') }}     # [linux]
+    - {{ cdt('libxau-devel') }}      # [linux]
     - pkg-config
-    - cairo 1.14.*
-    - gmp 6.1.*
-    - icu 58.*
-    - mpfr 3.1.*
-    - pixman 0.34.*
-    - freetype 2.8.*
-    - libpng >=1.6.32,<1.6.35
-    - zlib 1.2.11
-    - perl 5.22.2.1
+    - texinfo
+    - make
+    - patch
+  host:
+    - cairo
+    - freetype
+    - fontconfig
+    - gmp
+    - harfbuzz
+    - graphite2
+    - icu
+    - libpng
+    - mpfr
+    - pixman
+    - perl
+    - poppler
+    - zlib
   run:
-    - cairo 1.14.*
-    - gmp 6.1.*
-    - icu 58.*
-    - mpfr 3.1.*
-    - pixman 0.34.*
-    - freetype 2.8.*
-    - libpng >=1.6.32,<1.6.35
-    - zlib 1.2.11
-    - perl 5.22.2.1
+    - cairo
+    - freetype
+    - fontconfig
+    - gmp
+    - graphite2
+    - harfbuzz
+    - icu
+    - libpng
+    - mpfr
+    - pixman
+    - perl
+    - poppler
+    - zlib
 
 test:
   commands:
