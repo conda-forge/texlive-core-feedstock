@@ -14,10 +14,38 @@ cxx_compiler_version:
 - '7'
 docker_image:
 - condaforge/linux-anvil-comp7
+fontconfig:
+- '2.13'
+freetype:
+- 2.9.1
+gmp:
+- '6'
+libpng:
+- '1.6'
+mpfr:
+- '4'
 perl:
 - 5.26.2
 pin_run_as_build:
+  fontconfig:
+    max_pin: x
+  freetype:
+    max_pin: x
+  gmp:
+    max_pin: x
+  libpng:
+    max_pin: x.x
+  mpfr:
+    max_pin: x
   perl:
     max_pin: x.x.x
+  pixman:
+    max_pin: x.x
+  zlib:
+    max_pin: x.x
+pixman:
+- '0.38'
 target_platform:
 - linux-64
+zlib:
+- '1.2'
