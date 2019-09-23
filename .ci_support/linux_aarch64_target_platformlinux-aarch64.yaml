@@ -26,6 +26,8 @@ freetype:
 - 2.9.1
 gmp:
 - '6'
+icu:
+- '64.2'
 libpng:
 - '1.6'
 mpfr:
@@ -38,6 +40,8 @@ pin_run_as_build:
   freetype:
     max_pin: x
   gmp:
+    max_pin: x
+  icu:
     max_pin: x
   libpng:
     max_pin: x.x
