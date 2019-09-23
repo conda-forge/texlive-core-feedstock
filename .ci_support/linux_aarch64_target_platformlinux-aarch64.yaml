@@ -6,6 +6,8 @@ c_compiler:
 - gcc
 c_compiler_version:
 - '7'
+cairo:
+- '1.16'
 cdt_arch:
 - aarch64
 cdt_name:
@@ -35,6 +37,8 @@ mpfr:
 perl:
 - 5.26.2
 pin_run_as_build:
+  cairo:
+    max_pin: x.x
   fontconfig:
     max_pin: x
   freetype:
