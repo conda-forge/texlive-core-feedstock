@@ -27,7 +27,7 @@ requirements:
     - make
     - patch
   host:
-    - cairo 1.14.*
+    - cairo
     - freetype
     - fontconfig
     - gmp
@@ -41,7 +41,7 @@ requirements:
     - poppler >=0.64.0,<0.66.0
     - zlib
   run:
-    - cairo 1.14.*
+    - cairo
     - freetype
     - fontconfig
     - gmp
