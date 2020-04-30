@@ -69,6 +69,8 @@ test:
 about:
   home: https://www.tug.org/texlive/
   license: GPL-2.0+ and GPL-2.0 and GPL-3.0 and LPPL-1.3c and LPPL-1.0 and Artistic-1.0 and Apache-2.0 and MIT and BSD-3-Clause
+  # See https://www.tug.org/texlive/LICENSE.TL
+  license_file: LICENSE.TL
   summary: 'An easy way to get up and running with the TeX document production system.'
 
 extra:
