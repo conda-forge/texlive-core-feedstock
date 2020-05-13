@@ -23,7 +23,7 @@ freetype:
 gmp:
 - '6'
 icu:
-- '64.2'
+- '67'
 libpng:
 - '1.6'
 mpfr:
