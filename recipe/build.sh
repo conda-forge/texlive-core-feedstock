@@ -107,7 +107,7 @@ mkdir -p tmp_build && pushd tmp_build
   # make check reads files from the installation prefix:
   make install -j${CPU_COUNT}
   if [[ ! ${target_platform} =~ .*linux.* ]]; then
-    LC_ALL=C make check ${VERBOSE_AT}
+    VERBOSE=1 LC_ALL=C make check ${VERBOSE_AT}
   elif [[ ${TEST_SEGFAULT} == yes ]] && [[ ${target_platform} =~ .*linux.* ]]; then
     LC_ALL=C make check ${VERBOSE_AT}
     echo "pushd ${SRC_DIR}/tmp_build/texk/web2c"
