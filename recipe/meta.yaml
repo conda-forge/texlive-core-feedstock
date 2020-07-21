@@ -39,7 +39,7 @@ requirements:
     - mpfr
     - pixman
     - perl
-    - poppler >=0.64.0,<0.66.0
+    - poppler
     - zlib
   run:
     - cairo
@@ -53,7 +53,7 @@ requirements:
     - mpfr
     - pixman
     - perl
-    - poppler >=0.64.0,<0.66.0
+    - poppler
     - zlib
 
 test:
