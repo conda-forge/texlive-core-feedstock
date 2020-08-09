@@ -49,10 +49,14 @@ pin_run_as_build:
     max_pin: x.x.x
   pixman:
     max_pin: x.x
+  poppler:
+    max_pin: x.x
   zlib:
     max_pin: x.x
 pixman:
 - '0.38'
+poppler:
+- '0.89'
 target_platform:
 - linux-64
 zlib:
