@@ -3,9 +3,11 @@ VERBOSE_AT:
 c_compiler:
 - gcc
 c_compiler_version:
-- '7'
+- '9'
 cairo:
 - '1.16'
+cdt_name:
+- cos7
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -13,17 +15,17 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '7'
+- '9'
 docker_image:
-- condaforge/linux-anvil-comp7
+- quay.io/condaforge/linux-anvil-ppc64le
 fontconfig:
 - '2.13'
 freetype:
-- 2.9.1
+- '2'
 gmp:
 - '6'
 icu:
-- '67'
+- '68'
 libpng:
 - '1.6'
 mpfr:
@@ -39,21 +41,20 @@ pin_run_as_build:
     max_pin: x
   gmp:
     max_pin: x
-  icu:
-    max_pin: x
   libpng:
     max_pin: x.x
   mpfr:
     max_pin: x
   perl:
     max_pin: x.x.x
-  pixman:
-    max_pin: x.x
   zlib:
     max_pin: x.x
 pixman:
-- '0.38'
+- '0'
 target_platform:
-- linux-64
+- linux-ppc64le
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
 zlib:
 - '1.2'
