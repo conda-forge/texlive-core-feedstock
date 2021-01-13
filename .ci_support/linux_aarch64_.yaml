@@ -1,29 +1,35 @@
+BUILD:
+- aarch64-conda_cos7-linux-gnu
 VERBOSE_AT:
 - V=1
 c_compiler:
 - gcc
 c_compiler_version:
-- '8'
+- '9'
 cairo:
 - '1.16'
+cdt_arch:
+- aarch64
+cdt_name:
+- cos7
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '8'
+- '9'
 docker_image:
-- condaforge/linux-anvil-ppc64le
+- quay.io/condaforge/linux-anvil-aarch64
 fontconfig:
 - '2.13'
 freetype:
-- 2.9.1
+- '2'
 gmp:
 - '6'
 icu:
-- '67'
+- '68'
 libpng:
 - '1.6'
 mpfr:
@@ -39,21 +45,20 @@ pin_run_as_build:
     max_pin: x
   gmp:
     max_pin: x
-  icu:
-    max_pin: x
   libpng:
     max_pin: x.x
   mpfr:
     max_pin: x
   perl:
     max_pin: x.x.x
-  pixman:
-    max_pin: x.x
   zlib:
     max_pin: x.x
 pixman:
-- '0.38'
+- '0'
 target_platform:
-- linux-ppc64le
+- linux-aarch64
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
 zlib:
 - '1.2'
