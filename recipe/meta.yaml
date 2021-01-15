@@ -11,7 +11,7 @@ source:
     - 0001-support-poppler-0.64.0.patch
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win]
   detect_binary_files_with_prefix: true
 
@@ -28,6 +28,8 @@ requirements:
     - sed
     - patch
   host:
+    # glib is required for cairo's pkg-config check
+    - glib
     - cairo
     - freetype
     - fontconfig
@@ -42,19 +44,7 @@ requirements:
     - poppler >=0.64.0,<0.66.0
     - zlib
   run:
-    - cairo
-    - freetype
     - fontconfig
-    - gmp
-    - harfbuzz >=1.8.*
-    - graphite2
-    - icu
-    - libpng
-    - mpfr
-    - pixman
-    - perl
-    - poppler >=0.64.0,<0.66.0
-    - zlib
 
 test:
   commands:
