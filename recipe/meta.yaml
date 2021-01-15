@@ -28,6 +28,8 @@ requirements:
     - sed
     - patch
   host:
+    # glib is required for cairo's pkg-config check
+    - glib
     - cairo
     - freetype
     - fontconfig
