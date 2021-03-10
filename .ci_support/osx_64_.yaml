@@ -21,7 +21,7 @@ fontconfig:
 freetype:
 - '2'
 glib:
-- '2.66'
+- '2'
 gmp:
 - '6'
 icu:
