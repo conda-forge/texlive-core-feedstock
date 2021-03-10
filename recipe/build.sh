@@ -1,4 +1,9 @@
 #! /bin/bash
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./build-aux
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./libs/freetype2/freetype-src/builds/unix
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./libs/icu/icu-src/source
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./utils/asymptote
 
 
 set -e
