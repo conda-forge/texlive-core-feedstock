@@ -33,7 +33,7 @@ libpng:
 mpfr:
 - '4'
 perl:
-- 5.26.2
+- 5.32.1
 pin_run_as_build:
   cairo:
     max_pin: x.x
