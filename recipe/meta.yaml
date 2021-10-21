@@ -11,9 +11,11 @@ source:
     - 0001-support-poppler-0.64.0.patch
 
 build:
-  number: 8
+  number: 9
   skip: True  # [win]
   detect_binary_files_with_prefix: true
+  ignore_run_exports_from:
+    - perl 5.*
 
 requirements:
   build:
@@ -40,7 +42,7 @@ requirements:
     - libpng
     - mpfr
     - pixman
-    - perl
+    - perl 5.*
     - poppler >=0.64.0,<0.66.0
     - zlib
   run:
