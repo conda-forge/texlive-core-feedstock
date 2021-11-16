@@ -24,6 +24,7 @@ requirements:
     - {{ cdt('libxrender-devel') }}  # [linux]
     - {{ cdt('libxext-devel') }}     # [linux]
     - {{ cdt('libxau-devel') }}      # [linux]
+    - sysroot_linux-64 2.17  # [linux64]
     - pkg-config
     - texinfo
     - make
