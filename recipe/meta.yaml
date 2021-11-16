@@ -11,7 +11,7 @@ source:
     - 0001-support-poppler-0.64.0.patch
 
 build:
-  number: 10
+  number: 0
   skip: True  # [win]
   detect_binary_files_with_prefix: true
   ignore_run_exports_from:
@@ -68,3 +68,4 @@ extra:
     - jakirkham
     - ocefpaf
     - xhochy
+    - ngam
