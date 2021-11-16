@@ -9,7 +9,7 @@ cairo:
 cdt_name:
 - cos6
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -33,7 +33,7 @@ libpng:
 mpfr:
 - '4'
 perl:
-- 5.26.2
+- 5.32.1
 pin_run_as_build:
   cairo:
     max_pin: x.x
@@ -47,8 +47,6 @@ pin_run_as_build:
     max_pin: x.x
   mpfr:
     max_pin: x
-  perl:
-    max_pin: x.x.x
   zlib:
     max_pin: x.x
 pixman:
