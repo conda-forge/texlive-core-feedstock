@@ -1,7 +1,12 @@
 # texlive doesn't compile with clang=11 due to the use of multiple function definitions
-c_compiler_version:    # [osx]
+c_compiler_version:    # [osx_64]
 - '10'                 # [osx_64]
-- '11'                 # [osx_arm64]
-cxx_compiler_version:  # [osx]
+cxx_compiler_version:  # [osx_64]
 - '10'                 # [osx_64]
+
+# clang=11 is the earliest available for osx_arm64
+c_compiler_version:    # [osx_arm64]
 - '11'                 # [osx_arm64]
+cxx_compiler_version:  # [osx_arm64]
+- '11'                 # [osx_arm64]
+
