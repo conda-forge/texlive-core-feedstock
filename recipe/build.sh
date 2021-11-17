@@ -85,7 +85,7 @@ mkdir -p tmp_build && pushd tmp_build
                --disable-luatex \
                --disable-luajittex \
                --disable-uptex \
-               --enable-web2c \
+#                --enable-web2c \
                --enable-silent-rules \
                --enable-tex \
                --enable-etex \
