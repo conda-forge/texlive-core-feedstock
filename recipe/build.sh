@@ -113,7 +113,7 @@ mkdir -p tmp_build && pushd tmp_build
   make install -j${CPU_COUNT}
   if [[ ! ${target_platform} =~ .*linux.* ]]; then
     VERBOSE=1 LC_ALL=C make check ${VERBOSE_AT}
-  elif [[ ${TEST_SEGFAULT} == yes ]] && [[ ${target_platform} =~ .*linux.* ]]; then
+  elif [[ ${TEST_SEGFAULT} == yes ]] && [[ ${target_platform} =~ .*linux.* ]] && [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
     LC_ALL=C make check ${VERBOSE_AT}
     echo "pushd ${SRC_DIR}/tmp_build/texk/web2c"
     echo "LC_ALL=C make check ${VERBOSE_AT}"
