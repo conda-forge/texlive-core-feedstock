@@ -37,6 +37,7 @@ requirements:
     - gmp
     - harfbuzz >=1.8.*
     - graphite2
+    - texlive-core
     - icu
     - libpng
     - mpfr
