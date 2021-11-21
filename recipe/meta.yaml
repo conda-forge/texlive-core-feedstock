@@ -28,6 +28,7 @@ requirements:
     - make
     - sed
     - patch
+    - libpng
   host:
     # glib is required for cairo's pkg-config check
     - glib
@@ -46,6 +47,7 @@ requirements:
     - zlib
   run:
     - fontconfig
+    - libpng
 
 test:
   commands:
