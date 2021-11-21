@@ -72,7 +72,6 @@ mkdir -p tmp_build && pushd tmp_build
                --build=${BUILD} \
                --datarootdir="${SHARE_DIR}" \
                --disable-all-pkgs \
-               --disable-native-texlive-build \
                --disable-ipc \
                --disable-debug \
                --disable-dependency-tracking \
@@ -94,19 +93,51 @@ mkdir -p tmp_build && pushd tmp_build
                --enable-web-progs \
                --enable-texlive \
                --enable-dvipdfm-x \
-               --with-system-icu \
-               --with-system-gmp \
-               --with-system-cairo \
-               --with-system-pixman \
-               --with-system-freetype2 \
-               --with-system-libpng \
-               --with-system-zlib \
-               --with-system-mpfr \
-               --with-system-harfbuzz \
-               --with-system-graphite2 \
-               --with-system-poppler \
                --without-x \
                "${CONFIG_EXTRA[@]}" || { cat config.log ; exit 1 ; }
+
+
+# mkdir -p tmp_build && pushd tmp_build
+#   ../configure --prefix=$PREFIX \
+#                --host=${HOST} \
+#                --build=${BUILD} \
+#                --datarootdir="${SHARE_DIR}" \
+#                --disable-all-pkgs \
+#                --disable-native-texlive-build \
+#                --disable-ipc \
+#                --disable-debug \
+#                --disable-dependency-tracking \
+#                --disable-mf \
+#                --disable-pmp \
+#                --disable-upmp \
+#                --disable-aleph \
+#                --disable-eptex \
+#                --disable-euptex \
+#                --disable-luatex \
+#                --disable-luajittex \
+#                --disable-uptex \
+#                --enable-web2c \
+#                --enable-silent-rules \
+#                --enable-tex \
+#                --enable-etex \
+#                --enable-pdftex \
+#                --enable-xetex \
+#                --enable-web-progs \
+#                --enable-texlive \
+#                --enable-dvipdfm-x \
+#                --with-system-icu \
+#                --with-system-gmp \
+#                --with-system-cairo \
+#                --with-system-pixman \
+#                --with-system-freetype2 \
+#                --with-system-libpng \
+#                --with-system-zlib \
+#                --with-system-mpfr \
+#                --with-system-harfbuzz \
+#                --with-system-graphite2 \
+#                --with-system-poppler \
+#                --without-x \
+#                "${CONFIG_EXTRA[@]}" || { cat config.log ; exit 1 ; }
   # There is a race-condition in the build system.
   make -j${CPU_COUNT} ${VERBOSE_AT} || make -j1 ${VERBOSE_AT}
   # make check reads files from the installation prefix:
