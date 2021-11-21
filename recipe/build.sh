@@ -66,6 +66,7 @@ mkdir -p tmp_build && pushd tmp_build
                --host=${HOST} \
                --build=${BUILD} \
                --datarootdir="${SHARE_DIR}" \
+               --disable-native-texlive-build \
                --with-system-icu \
                --with-system-gmp \
                --with-system-cairo \
