@@ -93,6 +93,7 @@ mkdir -p tmp_build && pushd tmp_build
                --enable-web-progs \
                --enable-texlive \
                --enable-dvipdfm-x \
+               --with-system-icu \
                --without-x \
                "${CONFIG_EXTRA[@]}" || { cat config.log ; exit 1 ; }
 
