@@ -40,18 +40,18 @@ else
   CONFIG_EXTRA+=(--disable-debug)
 fi
 
-# kpathsea scans the texmf.cnf file to set up its hardcoded paths, so set them
-# up before building. It doesn't seem to handle multivalued TEXMFCNF entries,
-# so we patch that up after install.
+# # kpathsea scans the texmf.cnf file to set up its hardcoded paths, so set them
+# # up before building. It doesn't seem to handle multivalued TEXMFCNF entries,
+# # so we patch that up after install.
 
-mv $SRC_DIR/texk/kpathsea/texmf.cnf tmp.cnf
-sed \
-    -e "s|TEXMFROOT =.*|TEXMFROOT = ${SHARE_DIR}|" \
-    -e "s|TEXMFLOCAL =.*|TEXMFLOCAL = ${SHARE_DIR}/texmf-local|" \
-    -e "/^TEXMFCNF/,/^}/d" \
-    -e "s|%TEXMFCNF =.*|TEXMFCNF = ${SHARE_DIR}/texmf-dist/web2c|" \
-    <tmp.cnf >$SRC_DIR/texk/kpathsea/texmf.cnf
-rm -f tmp.cnf
+# mv $SRC_DIR/texk/kpathsea/texmf.cnf tmp.cnf
+# sed \
+#     -e "s|TEXMFROOT =.*|TEXMFROOT = ${SHARE_DIR}|" \
+#     -e "s|TEXMFLOCAL =.*|TEXMFLOCAL = ${SHARE_DIR}/texmf-local|" \
+#     -e "/^TEXMFCNF/,/^}/d" \
+#     -e "s|%TEXMFCNF =.*|TEXMFCNF = ${SHARE_DIR}/texmf-dist/web2c|" \
+#     <tmp.cnf >$SRC_DIR/texk/kpathsea/texmf.cnf
+# rm -f tmp.cnf
 
 export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
@@ -127,11 +127,11 @@ popd
 rm -rf ${SHARE_DIR}/man
 rm -rf ${SHARE_DIR}/info
 
-mv ${SHARE_DIR}/texmf-dist/web2c/texmf.cnf tmp.cnf
-sed \
-    -e "s|TEXMFCNF =.*|TEXMFCNF = {${SHARE_DIR}/texmf-local/web2c, ${SHARE_DIR}/texmf-dist/web2c}|" \
-    <tmp.cnf >${SHARE_DIR}/texmf-dist/web2c/texmf.cnf
-rm -f tmp.cnf
+# mv ${SHARE_DIR}/texmf-dist/web2c/texmf.cnf tmp.cnf
+# sed \
+#     -e "s|TEXMFCNF =.*|TEXMFCNF = {${SHARE_DIR}/texmf-local/web2c, ${SHARE_DIR}/texmf-dist/web2c}|" \
+#     <tmp.cnf >${SHARE_DIR}/texmf-dist/web2c/texmf.cnf
+# rm -f tmp.cnf
 
 # Create symlinks for pdflatex and latex
 ln -s $PREFIX/bin/pdftex $PREFIX/bin/pdflatex
