@@ -53,6 +53,7 @@ test:
     # Test the symlinks.
     - pdflatex --version
     - latex --version
+    - latex simple.tex
 
 about:
   home: https://www.tug.org/texlive/
