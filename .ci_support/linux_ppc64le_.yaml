@@ -27,7 +27,7 @@ glib:
 gmp:
 - '6'
 icu:
-- '69'
+- '70'
 libpng:
 - '1.6'
 mpfr:
