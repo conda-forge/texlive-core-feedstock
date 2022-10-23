@@ -7,7 +7,7 @@ c_compiler:
 c_compiler_version:
 - '10'
 cairo:
-- '1.16'
+- '1'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -17,7 +17,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '10'
 fontconfig:
-- '2.13'
+- '2'
 freetype:
 - '2'
 glib:
@@ -32,21 +32,6 @@ macos_machine:
 - x86_64-apple-darwin13.4.0
 mpfr:
 - '4'
-pin_run_as_build:
-  cairo:
-    max_pin: x.x
-  fontconfig:
-    max_pin: x
-  freetype:
-    max_pin: x
-  gmp:
-    max_pin: x
-  libpng:
-    max_pin: x.x
-  mpfr:
-    max_pin: x
-  zlib:
-    max_pin: x.x
 pixman:
 - '0'
 target_platform:
