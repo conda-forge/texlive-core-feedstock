@@ -119,6 +119,7 @@ fi
 # for cross-compiling, but we should be using the correct compiler
 # aliases everywhere.
 export OBJCXX=$CXX
+export BUILDCC=$CC_FOR_BUILD
 
 # We need to package graphite2 to be able to use it harfbuzz.
 # Using our cairo breaks the recipe and `mpfr` is not found triggering the library from TL tree.
