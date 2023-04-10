@@ -1,15 +1,15 @@
-{% set version = "20210325" %}
+{% set version = "20230313" %}
 
 package:
   name: texlive-core
   version: {{ version }}
 
 source:
-  url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/texlive-{{ version }}-source.tar.xz
-  sha256: 7aefd96608d72061970f2d73f275be5648ea8ae815af073016d3106acc0d584b
+  url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2023/texlive-{{ version }}-source.tar.xz
+  sha256: 3878aa0e1ed0301c053b0e2ee4e9ad999c441345f4882e79bdd1c8f4ce9e79b9
 
 build:
-  number: 9
+  number: 0
   skip: True  # [win]
   detect_binary_files_with_prefix: true
   ignore_run_exports_from:
@@ -17,6 +17,8 @@ build:
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('libxrender-devel') }}  # [linux]
@@ -41,7 +43,7 @@ requirements:
     - mpfr
     - pixman
     - perl 5.*
-    - poppler >=0.64.0,<0.66.0
+    - poppler
     - zlib
   run:
     - fontconfig
@@ -67,3 +69,4 @@ extra:
     - ocefpaf
     - xhochy
     - ngam
+    - erykoff

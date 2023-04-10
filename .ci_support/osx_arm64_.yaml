@@ -1,5 +1,5 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
+- '11.0'
 VERBOSE_AT:
 - V=1
 c_compiler:
@@ -29,7 +29,7 @@ icu:
 libpng:
 - '1.6'
 macos_machine:
-- x86_64-apple-darwin13.4.0
+- arm64-apple-darwin20.0.0
 mpfr:
 - '4'
 pin_run_as_build:
@@ -40,7 +40,7 @@ pixman:
 poppler:
 - '23.03'
 target_platform:
-- osx-64
+- osx-arm64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
