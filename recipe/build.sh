@@ -169,20 +169,23 @@ mkdir -p tmp_build && pushd tmp_build
   make -j${CPU_COUNT} ${VERBOSE_AT} || make -j1 ${VERBOSE_AT}
   # make check reads files from the installation prefix:
   make install -j${CPU_COUNT}
-  if [[ ! ${target_platform} =~ .*linux.* ]]; then
-    VERBOSE=1 LC_ALL=C make check ${VERBOSE_AT}
-  elif [[ ${TEST_SEGFAULT} == yes ]] && [[ ${target_platform} =~ .*linux.* ]]; then
-    LC_ALL=C make check ${VERBOSE_AT}
-    echo "pushd ${SRC_DIR}/tmp_build/texk/web2c"
-    echo "LC_ALL=C make check ${VERBOSE_AT}"
-    echo "cat mplibdir/mptraptest.log"
-    pushd "${SRC_DIR}/tmp_build/texk/web2c/mpost"
-      # I believe mpost test fails here because it tries to load mpost itself as a configuration file
-      # .. this happens in both failing tests on Linux. Debug builds (CFLAGS-wise) do not suffer a
-      # segfault at this point but release ones. Skipping for now, will re-visit later.
-      LC_ALL=C ../mpost --ini ../mpost
-    popd
-    exit 1
+  # Only do make check tests on native builds.
+  if [[ "$CONDA_BUILD_CROSS_COMPILATION" != 1 ]]; then
+    if [[ ! ${target_platform} =~ .*linux.* ]]; then
+      VERBOSE=1 LC_ALL=C make check ${VERBOSE_AT}
+    elif [[ ${TEST_SEGFAULT} == yes ]] && [[ ${target_platform} =~ .*linux.* ]]; then
+      LC_ALL=C make check ${VERBOSE_AT}
+      echo "pushd ${SRC_DIR}/tmp_build/texk/web2c"
+      echo "LC_ALL=C make check ${VERBOSE_AT}"
+      echo "cat mplibdir/mptraptest.log"
+      pushd "${SRC_DIR}/tmp_build/texk/web2c/mpost"
+        # I believe mpost test fails here because it tries to load mpost itself as a configuration file
+        # .. this happens in both failing tests on Linux. Debug builds (CFLAGS-wise) do not suffer a
+        # segfault at this point but release ones. Skipping for now, will re-visit later.
+        LC_ALL=C ../mpost --ini ../mpost
+      popd
+      exit 1
+    fi
   fi
 popd
 
