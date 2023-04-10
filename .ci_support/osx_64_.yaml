@@ -32,8 +32,13 @@ macos_machine:
 - x86_64-apple-darwin13.4.0
 mpfr:
 - '4'
+pin_run_as_build:
+  poppler:
+    max_pin: x.x
 pixman:
 - '0'
+poppler:
+- '23.03'
 target_platform:
 - osx-64
 zip_keys:

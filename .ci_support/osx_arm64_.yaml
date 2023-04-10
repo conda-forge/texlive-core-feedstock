@@ -32,8 +32,13 @@ macos_machine:
 - arm64-apple-darwin20.0.0
 mpfr:
 - '4'
+pin_run_as_build:
+  poppler:
+    max_pin: x.x
 pixman:
 - '0'
+poppler:
+- '23.03'
 target_platform:
 - osx-arm64
 zip_keys:
