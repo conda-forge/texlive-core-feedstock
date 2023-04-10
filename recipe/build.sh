@@ -62,8 +62,8 @@ export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 # dependencies, so we need to build the whole thing.
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
   (
-    mkdir -p native-build
-    pushd native-build
+    mkdir -p native_build
+    pushd native_build
 
     export CC=$CC_FOR_BUILD
     export CXX=$CXX_FOR_BUILD
@@ -102,12 +102,17 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
     popd
   )
   # Point to the locations of the tangle executables.
-  export TANGLEBOOT=$SRC_DIR/native-build/texk/web2c/tangleboot
-  export TANGLE=$SRC_DIR/native-build/texk/web2c/tangle
-  export CTANGLEBOOT=$SRC_DIR/native-build/texk/web2c/ctangleboot
-  export CTANGLE=$SRC_DIR/native-build/texk/web2c/ctangle
-  export TIE=$SRC_DIR/native-build/texk/web2c/tie
-  export OTANGLE=$SRC_DIR/native-build/texk/web2c/otangle
+  export TANGLEBOOT=$SRC_DIR/native_build/texk/web2c/tangleboot
+  export TANGLE=$SRC_DIR/native_build/texk/web2c/tangle
+  export CTANGLEBOOT=$SRC_DIR/native_build/texk/web2c/ctangleboot
+  export CTANGLE=$SRC_DIR/native_build/texk/web2c/ctangle
+  export TIE=$SRC_DIR/native_build/texk/web2c/tie
+  export OTANGLE=$SRC_DIR/native_build/texk/web2c/otangle
+
+  # Patch $SRC_DIR/texk/web2c/Makefile.in to use the native build of himktables.
+  sed -i \
+      "s^\./himktables^$SRC_DIR/native_build/texk/web2c/himktables^g" \
+      $SRC_DIR/texk/web2c/Makefile.in
 fi
 
 # The Makefile also expects OBJCXX to be set. This is vital
