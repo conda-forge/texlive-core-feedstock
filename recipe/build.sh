@@ -170,7 +170,7 @@ mkdir -p tmp_build && pushd tmp_build
   # make check reads files from the installation prefix:
   make install -j${CPU_COUNT}
   # Only do make check tests on native builds.
-  if [[ "$CONDA_BUILD_CROSS_COMPILATION" != 1 ]]; then
+  if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
     if [[ ! ${target_platform} =~ .*linux.* ]]; then
       VERBOSE=1 LC_ALL=C make check ${VERBOSE_AT}
     elif [[ ${TEST_SEGFAULT} == yes ]] && [[ ${target_platform} =~ .*linux.* ]]; then
@@ -202,3 +202,13 @@ rm -f tmp.cnf
 # Create symlinks for pdflatex and latex
 ln -s $PREFIX/bin/pdftex $PREFIX/bin/pdflatex
 ln -s $PREFIX/bin/pdftex $PREFIX/bin/latex
+
+# Install TeXLive perl code to enable tlpkg.
+cp -r extra/tlpkg/* $PREFIX/share/tlpkg/
+
+# Make the backups directory needed for tlpkg.
+mkdir -p $PREFIX/share/tlpkg/backups
+
+# Copy in the installer configuration for tlpkg.
+cp -r installer/tlpkg/installer $PREFIX/share/tlpkg/
+cp -r installer/tlpkg/tltcl $PREFIX/share/tlpkg/
