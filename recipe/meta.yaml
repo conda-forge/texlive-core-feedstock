@@ -1,3 +1,4 @@
+{% set year = "2023" %}
 {% set version = "20230313" %}
 
 package:
@@ -5,15 +6,19 @@ package:
   version: {{ version }}
 
 source:
-  url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2023/texlive-{{ version }}-source.tar.xz
-  sha256: 3878aa0e1ed0301c053b0e2ee4e9ad999c441345f4882e79bdd1c8f4ce9e79b9
+  - url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/{{ year }}/texlive-{{ version }}-source.tar.xz
+    sha256: 3878aa0e1ed0301c053b0e2ee4e9ad999c441345f4882e79bdd1c8f4ce9e79b9
+  - url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/{{ year }}/texlive-{{ version }}-extra.tar.xz
+    sha256: 80a676facc174e6853550c87898a982c96dfc63ac30de19e6fcaa7635edb38c2
+    folder: extra
+  - url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/{{ year }}/install-tl-unx.tar.gz
+    sha256: d97bdb3b1903428e56373e70861b24db448243d74d950cdff96f4e888f008605
+    folder: installer
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   detect_binary_files_with_prefix: true
-  ignore_run_exports_from:
-    - perl 5.*
 
 requirements:
   build:
