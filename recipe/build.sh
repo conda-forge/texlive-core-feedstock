@@ -206,8 +206,11 @@ ln -s $PREFIX/bin/pdftex $PREFIX/bin/latex
 # Install TeXLive perl code to enable tlpkg.
 cp -r extra/tlpkg/* $PREFIX/share/tlpkg/
 
-# Make the backups directory needed for tlpkg.
+# Make the backups & tlpobj directories needed for tlpkg.
 mkdir -p $PREFIX/share/tlpkg/backups
+touch $PREFIX/share/tlpkg/backups/.empty_conda_file
+mkdir -p $PREFIX/share/tlpkg/tlpobj
+touch $PREFIX/share/tlpkg/tlpobj/.empty_conda_file
 
 # Copy in the installer configuration for tlpkg.
 cp -r installer/tlpkg/installer $PREFIX/share/tlpkg/
