@@ -38,7 +38,7 @@ pin_run_as_build:
 pixman:
 - '0'
 poppler:
-- '23.07'
+- '23.08'
 target_platform:
 - osx-arm64
 zip_keys:
