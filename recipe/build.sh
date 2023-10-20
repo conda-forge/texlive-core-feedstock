@@ -94,6 +94,7 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
                  --disable-uptex \
                  --enable-web2c \
                  --without-x \
+		 --with-system-icu=yes \
                  "${CONFIG_EXTRA[@]}" || { cat config.log ; exit 1 ; }
 
     # There is a race-condition in the build system.
