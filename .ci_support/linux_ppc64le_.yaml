@@ -4,6 +4,10 @@ c_compiler:
 - gcc
 c_compiler_version:
 - '12'
+c_stdlib:
+- sysroot
+c_stdlib_version:
+- '2.17'
 cairo:
 - '1'
 cdt_name:
@@ -38,11 +42,13 @@ pin_run_as_build:
 pixman:
 - '0'
 poppler:
-- '24.03'
+- '24.04'
 target_platform:
 - linux-ppc64le
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
+- - c_stdlib_version
+  - cdt_name
 zlib:
 - '1.2'
