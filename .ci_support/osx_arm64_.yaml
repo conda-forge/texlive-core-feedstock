@@ -1,5 +1,7 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
 VERBOSE_AT:
 - V=1
 c_compiler:
@@ -42,11 +44,11 @@ pin_run_as_build:
 pixman:
 - '0'
 poppler:
-- '24.04'
+- '24.07'
 target_platform:
 - osx-arm64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
 zlib:
-- '1.2'
+- '1'

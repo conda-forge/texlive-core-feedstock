@@ -46,7 +46,7 @@ pin_run_as_build:
 pixman:
 - '0'
 poppler:
-- '24.04'
+- '24.07'
 target_platform:
 - linux-aarch64
 zip_keys:
@@ -55,4 +55,4 @@ zip_keys:
 - - c_stdlib_version
   - cdt_name
 zlib:
-- '1.2'
+- '1'
