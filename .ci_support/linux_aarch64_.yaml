@@ -35,7 +35,7 @@ glib:
 gmp:
 - '6'
 icu:
-- '73'
+- '75'
 libpng:
 - '1.6'
 mpfr:
@@ -55,4 +55,4 @@ zip_keys:
 - - c_stdlib_version
   - cdt_name
 zlib:
-- '1.2'
+- '1'
