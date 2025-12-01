@@ -7,7 +7,7 @@ VERBOSE_AT:
 c_compiler:
 - clang
 c_compiler_version:
-- '16'
+- '19'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
@@ -21,7 +21,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '16'
+- '19'
 fontconfig:
 - '2'
 freetype:
@@ -38,13 +38,10 @@ macos_machine:
 - arm64-apple-darwin20.0.0
 mpfr:
 - '4'
-pin_run_as_build:
-  poppler:
-    max_pin: x.x
 pixman:
 - '0'
 poppler:
-- '24.08'
+- '25.11'
 target_platform:
 - osx-arm64
 zip_keys:
