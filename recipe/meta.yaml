@@ -9,8 +9,8 @@ source:
   sha256: 3878aa0e1ed0301c053b0e2ee4e9ad999c441345f4882e79bdd1c8f4ce9e79b9
 
 build:
-  number: 15
-  skip: True  # [win]
+  number: 16
+  skip: true  # [win]
   detect_binary_files_with_prefix: true
   ignore_run_exports_from:
     - perl 5.*
@@ -22,9 +22,6 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    - {{ cdt('libxrender-devel') }}  # [linux]
-    - {{ cdt('libxext-devel') }}     # [linux]
-    - {{ cdt('libxau-devel') }}      # [linux]
     - pkg-config
     - texinfo
     - make
@@ -46,6 +43,9 @@ requirements:
     - perl 5.*
     - poppler
     - zlib
+    - xorg-libxrender                # [linux]
+    - xorg-libxext                   # [linux]
+    - xorg-libxau                    # [linux]
   run:
     - fontconfig
 
