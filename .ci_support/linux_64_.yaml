@@ -3,15 +3,13 @@ VERBOSE_AT:
 c_compiler:
 - gcc
 c_compiler_version:
-- '12'
+- '14'
 c_stdlib:
 - sysroot
 c_stdlib_version:
 - '2.17'
 cairo:
 - '1'
-cdt_name:
-- cos7
 channel_sources:
 - conda-forge
 channel_targets:
@@ -19,9 +17,11 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '12'
+- '14'
 docker_image:
-- quay.io/condaforge/linux-anvil-cos7-x86_64
+- quay.io/condaforge/linux-anvil-x86_64:alma9
+expat:
+- '2'
 fontconfig:
 - '2'
 freetype:
@@ -31,24 +31,19 @@ glib:
 gmp:
 - '6'
 icu:
-- '75'
+- '78'
 libpng:
 - '1.6'
 mpfr:
 - '4'
-pin_run_as_build:
-  poppler:
-    max_pin: x.x
 pixman:
 - '0'
 poppler:
-- '24.08'
+- '26.05'
 target_platform:
 - linux-64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - c_stdlib_version
-  - cdt_name
 zlib:
 - '1'

@@ -1,17 +1,17 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.13'
+- '11.0'
 MACOSX_SDK_VERSION:
-- '10.13'
+- '11.0'
 VERBOSE_AT:
 - V=1
 c_compiler:
 - clang
 c_compiler_version:
-- '16'
+- '19'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
-- '10.13'
+- '11.0'
 cairo:
 - '1'
 channel_sources:
@@ -21,7 +21,9 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '16'
+- '19'
+expat:
+- '2'
 fontconfig:
 - '2'
 freetype:
@@ -31,20 +33,17 @@ glib:
 gmp:
 - '6'
 icu:
-- '75'
+- '78'
 libpng:
 - '1.6'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 mpfr:
 - '4'
-pin_run_as_build:
-  poppler:
-    max_pin: x.x
 pixman:
 - '0'
 poppler:
-- '24.08'
+- '26.05'
 target_platform:
 - osx-64
 zip_keys:
