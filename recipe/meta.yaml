@@ -1,15 +1,15 @@
-{% set version = "20230313" %}
+{% set version = "20260301" %}
 
 package:
   name: texlive-core
   version: {{ version }}
 
 source:
-  url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2023/texlive-{{ version }}-source.tar.xz
-  sha256: 3878aa0e1ed0301c053b0e2ee4e9ad999c441345f4882e79bdd1c8f4ce9e79b9
+  url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/{{ version[:4] }}/texlive-{{ version }}-source.tar.xz
+  sha256: cb120d314d3ceb23ac608af17ddd2c623afcf02331f400a0f25eead5b8ac1d70
 
 build:
-  number: 16
+  number: 0
   skip: true  # [win]
   detect_binary_files_with_prefix: true
   ignore_run_exports_from:
