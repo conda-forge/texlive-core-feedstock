@@ -1,0 +1,83 @@
+schema_version: 1
+
+context:
+  version: "20260301"
+
+package:
+  name: texlive-core
+  version: ${{ version }}
+
+source:
+  url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2026/texlive-${{ version }}-source.tar.xz
+  sha256: cb120d314d3ceb23ac608af17ddd2c623afcf02331f400a0f25eead5b8ac1d70
+
+build:
+  number: 0
+  skip: win
+  prefix_detection:
+    ignore_binary_files: true
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - pkg-config
+    - texinfo
+    - make
+    - sed
+    - patch
+  host:
+    # glib is required for cairo's pkg-config check
+    - glib
+    - cairo
+    - expat
+    - freetype
+    - fontconfig
+    - gmp
+    - harfbuzz >=1.8
+    - graphite2
+    - icu
+    - libpng
+    - mpfr
+    - pixman
+    - perl 5.*
+    - poppler
+    - zlib
+    - if: linux
+      then:
+        - xorg-libxrender
+        - xorg-libxext
+        - xorg-libxau
+        - xorg-xorgproto
+  run:
+    - fontconfig
+  ignore_run_exports:
+    from_package:
+      - perl 5.*
+
+tests:
+  - script:
+      - pdftex --version
+      - bibtex --version
+      - pdflatex --version
+      - latex --version
+
+about:
+  license: GPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LPPL-1.3c AND LPPL-1.0 AND Artistic-1.0 AND Apache-2.0 AND MIT AND BSD-3-Clause
+  # See https://www.tug.org/texlive/LICENSE.TL
+  license_file: LICENSE.TL
+  summary: An easy way to get up and running with the TeX document production system.
+  homepage: https://www.tug.org/texlive/
+
+extra:
+  recipe-maintainers:
+    - jakirkham
+    - ocefpaf
+    - xhochy
+    - ngam
+    - erykoff
