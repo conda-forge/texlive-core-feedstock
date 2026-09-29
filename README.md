@@ -72,31 +72,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `texlive-core` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install texlive-core
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install texlive-core
 ```
 
-It is possible to list all of the versions of `texlive-core` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add texlive-core
+# for installing globally
+pixi global install texlive-core
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `texlive-core` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search texlive-core --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search texlive-core --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search texlive-core --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -108,6 +150,8 @@ mamba repoquery whoneeds texlive-core --channel conda-forge
 # List dependencies of `texlive-core`:
 mamba repoquery depends texlive-core --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
