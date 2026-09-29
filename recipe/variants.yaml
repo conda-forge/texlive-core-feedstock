@@ -1,0 +1,13 @@
+# FIXME: clang 21 on osx miscompiles the web2c-generated code at -O2:
+# 'make check' crashes in mplibdir/mptraptest (mpost segfaults) and
+# pdftexdir/pdftosrc (bus error). These are the same two tests documented
+# in build.sh as segfaulting at -O2 on Linux. clang 19 (the previous
+# conda-forge default) is unaffected, so pin it until a fixed compiler or
+# an upstream TeX Live fix is available.
+# c.f. https://github.com/conda-forge/texlive-core-feedstock/pull/113
+c_compiler_version:
+  - if: osx
+    then: "19"
+cxx_compiler_version:
+  - if: osx
+    then: "19"
