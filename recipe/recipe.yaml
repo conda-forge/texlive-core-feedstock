@@ -24,7 +24,7 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
-    - pkg-config
+    - pkgconf
     - texinfo
     - make
     - sed
