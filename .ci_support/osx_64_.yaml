@@ -29,7 +29,7 @@ glib:
 gmp:
 - '6'
 icu:
-- '78'
+- '79'
 libpng:
 - '1.6'
 macos_machine:
